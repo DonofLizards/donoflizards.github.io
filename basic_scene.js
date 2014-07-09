@@ -16,6 +16,12 @@ if (havePointerLock)
 				controls.enabled = true;
 				container.style.display = 'none';
 				}
+		else 
+			{	
+				controls.enabled = false;
+
+				}
+
 		};
 	};
 	
