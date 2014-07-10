@@ -93,11 +93,11 @@ function init () {
 	renderer.setClearColor(0xEEEEEE);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
-	planeGeometry = new THREE.PlaneGeometry(2000,2000);
+	/*planeGeometry = new THREE.PlaneGeometry(2000,2000);
 	planeGeometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
 	planeMaterial = new THREE.MeshBasicMaterial({color:0xcccccc});
 	plane = new THREE.Mesh(planeGeometry,planeMaterial);
-	scene.add(plane);
+	scene.add(plane);*/
 
 	cubeGeometry = new THREE.BoxGeometry(4,4,4);
 	cubeMaterial = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: false});
@@ -144,6 +144,17 @@ function moveCamera(evt) {
 			camera.position.x += 1;
 		}
 	}
+
+var loader = new THREE.JSONLoader();
+loader.load("newtextanimationwnewpikachueyes5.js", addModelToScene);
+
+function addModelToScene( geometry, materials ) 
+{
+    var material = new THREE.MeshFaceMaterial( materials );
+    modeltd = new THREE.Mesh( geometry, material );
+    modeltd.scale.set(1,1,1);
+    scene.add( modeltd );
+}
 		
 function renderScene() {
 	requestAnimationFrame(renderScene);
