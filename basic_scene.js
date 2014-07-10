@@ -31,10 +31,40 @@ if (havePointerLock)
 	
 	instructions.addEventListener('click', function(evt) {
 		instructions.style.display = 'none';
+
 		element.requestPointerLock = element.requestPointerLock || element.mozRequestPointerLock || element.webkitRequestPointerLock;
-		element.requestPointerLock();
+
+	if ( /Firefox/i.test( navigator.userAgent ) ) {
+
+		var fullscreenchange = function ( event ) {
+
+		if ( document.fullscreenElement === element || document.mozFullscreenElement === element || document.mozFullScreenElement === element ) {
+
+			document.removeEventListener( 'fullscreenchange', fullscreenchange );
+			document.removeEventListener( 'mozfullscreenchange', fullscreenchange );
+
+			element.requestPointerLock();
+			}
+
+		}
 		
-		});
+
+
+	document.addEventListener( 'fullscreenchange', fullscreenchange, false );
+	document.addEventListener( 'mozfullscreenchange', fullscreenchange, false );
+
+	element.requestFullscreen = element.requestFullscreen || element.mozRequestFullscreen || element.mozRequestFullScreen || element.webkitRequestFullscreen;
+
+	element.requestFullscreen();
+	}
+
+
+	else 
+	{
+		element.requestPointerLock();
+		}
+		
+	});
 		
 /*// PointerLock requested when element is clicked.
 //function getPointerLock() {
@@ -93,11 +123,11 @@ function init () {
 	renderer.setClearColor(0xEEEEEE);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
-	/*planeGeometry = new THREE.PlaneGeometry(2000,2000);
+	planeGeometry = new THREE.PlaneGeometry(2000,2000);
 	planeGeometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
 	planeMaterial = new THREE.MeshBasicMaterial({color:0xcccccc});
 	plane = new THREE.Mesh(planeGeometry,planeMaterial);
-	scene.add(plane);*/
+	scene.add(plane);
 
 	cubeGeometry = new THREE.BoxGeometry(4,4,4);
 	cubeMaterial = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: false});
@@ -146,7 +176,7 @@ function moveCamera(evt) {
 	}
 
 var loader = new THREE.JSONLoader();
-loader.load("newtextanimationwnewpikachueyes5.js", addModelToScene);
+loader.load("test_monkey.js", addModelToScene);
 
 function addModelToScene( geometry, materials ) 
 {
@@ -155,6 +185,8 @@ function addModelToScene( geometry, materials )
     modeltd.scale.set(1,1,1);
     scene.add( modeltd );
 }
+
+
 		
 function renderScene() {
 	requestAnimationFrame(renderScene);
