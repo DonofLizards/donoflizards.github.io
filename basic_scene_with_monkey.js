@@ -2,6 +2,7 @@
 $(document).ready(function() {
 
 var controls;
+monkeyModels = [];
 var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
 var instructions = document.getElementById('instructions');
 
@@ -90,6 +91,42 @@ if (havePointerLock)
 //}
 
 */
+var loader = new THREE.JSONLoader();
+loader.load("test_monkey.js", addModelToScene);
+
+function addModelToScene( geometry, materials ) 
+{
+	
+	
+	for (var x = 0; x < 10; x ++) 
+	{
+		var material = new THREE.MeshFaceMaterial( materials );
+		monkeyModel = new THREE.Mesh( geometry, material );
+		monkeyModel.scale.set(10,10,10);
+		var monkeyGeometry = new THREE.Geometry();
+		var texture = new THREE.Mesh(geometry);
+
+		//monkeyModel.position.x = Math.floor(Math.random() * 200 - 100) * 10;
+		//monkeyModel.position.y = Math.floor(Math.random() * 200 - 100) * 10;
+		monkeyModel.position.x = cube.position.x + randomSign(Math.floor(Math.random() * 100));
+		monkeyModel.position.y = cube.position.y + randomSign(Math.floor(Math.random() * 100));
+		monkeyModel.position.z = cube.position.z + randomSign(Math.floor(Math.random() * 100));
+		//monkeyModel.rotation.y = Math.random()*Math.PI*2;
+
+ 		monkeyModels.push(monkeyModel);
+		scene.add(monkeyModel);
+	}
+}
+
+function randomSign(int) {
+	if (Math.round(Math.random()) === 1)
+	{
+		return -int;
+	}
+	else {
+		return int;
+	}
+}
 
 init();
 renderScene();
@@ -126,10 +163,9 @@ function init () {
 	ray.ray.direction.set( 0, -1, 0 );
 
 	camera.position.y = 20;
-	camera.position.z = 100;
+	camera.position.z = 400;
 
 	document.body.appendChild(renderer.domElement);
-
 	}
 
 
@@ -156,19 +192,8 @@ function moveCamera(evt) {
 		}
 	}
 
-var loader = new THREE.JSONLoader();
-loader.load("test_monkey.js", addModelToScene);
 
-function addModelToScene( geometry, materials ) 
-{
-    var material = new THREE.MeshFaceMaterial( materials );
-    monkeyModel = new THREE.Mesh( geometry, material );
-    monkeyModel.scale.set(10,10,10);
-    scene.add( monkeyModel );
-}
-
-
-		
+	
 function renderScene() {
 	requestAnimationFrame(renderScene);
 	controls.isOnObject(false);
@@ -179,8 +204,17 @@ function renderScene() {
 	//getPointerLock();
 	controls.update();
 	renderer.render(scene, camera);
-	monkeyModel.rotation += 0.01
-	monkeyModel.rotation -= 0.01
+	console.log(monkeyModels);
+	for (var i = 0; i <  monkeyModels.length ; i ++)
+	 {
+		monkeyModels[i].rotation.x += randomSign(Math.random() / 10);
+		monkeyModels[i].rotation.y += randomSign(Math.random() / 10);
+		monkeyModels[i].rotation.z += randomSign(Math.random() / 10);
+		monkeyModels[i].position.x += randomSign(Math.floor(Math.random() * 10));
+		monkeyModels[i].position.y += randomSign(Math.floor(Math.random() * 10));
+		monkeyModels[i].position.z += randomSign(Math.floor(Math.random() * 10));
+	}
+
 	}
 	
 });
