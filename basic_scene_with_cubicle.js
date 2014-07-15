@@ -2,7 +2,7 @@
 $(document).ready(function() {
 
 var controls;
-monkeyModels = [];
+cubicleMeshes = [];
 var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
 var instructions = document.getElementById('instructions');
 
@@ -101,17 +101,18 @@ function addModelToScene( geometry, materials )
 	for (var x = 0; x < 10; x ++) 
 	{
 		var material = new THREE.MeshFaceMaterial( materials );
-		monkeyModel = new THREE.Mesh( geometry, material );
-		monkeyModel.scale.set(10,10,10);
-		var monkeyGeometry = new THREE.Geometry();
+		cubicleMesh = new THREE.Mesh( geometry, material );
+		cubicleMesh.scale.set(10,10,10);
+		var cubicleGeometry = new THREE.Geometry();
 		var texture = new THREE.Mesh(geometry);
 
-		monkeyModel.position.x = randomSign(Math.random() * 1000);
-		//monkeyModel.position.y = cube.position.y + Math.floor(Math.random() * 100);
-		monkeyModel.position.z = randomSign(Math.random() * 1000);
+		cubicleMesh.position.x = randomSign(Math.random() * 1000);
+		//cubicleMesh.position.y = cube.position.y + Math.floor(Math.random() * 100);
+		cubicleMesh.position.z = randomSign(Math.random() * 1000);
 
- 		monkeyModels.push(monkeyModel);
-		scene.add(monkeyModel);
+		scene.add(cubicleMesh);
+ 		cubicleMeshes.push(cubicleMesh);
+		
 	}
 }
 
