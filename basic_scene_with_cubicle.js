@@ -92,7 +92,7 @@ if (havePointerLock)
 
 */
 var loader = new THREE.JSONLoader();
-loader.load("test_monkey.js", addModelToScene);
+loader.load("cubicle_generic.js", addModelToScene);
 
 function addModelToScene( geometry, materials ) 
 {
@@ -106,9 +106,9 @@ function addModelToScene( geometry, materials )
 		var monkeyGeometry = new THREE.Geometry();
 		var texture = new THREE.Mesh(geometry);
 
-		monkeyModel.position.x = cube.position.x + Math.floor(Math.random() * 100);
-		monkeyModel.position.y = cube.position.y + Math.floor(Math.random() * 100);
-		monkeyModel.position.z = cube.position.z + Math.floor(Math.random() * 100);
+		monkeyModel.position.x = randomSign(Math.random() * 1000);
+		//monkeyModel.position.y = cube.position.y + Math.floor(Math.random() * 100);
+		monkeyModel.position.z = randomSign(Math.random() * 1000);
 
  		monkeyModels.push(monkeyModel);
 		scene.add(monkeyModel);
@@ -202,7 +202,7 @@ function renderScene() {
 	//getPointerLock();
 	controls.update();
 	renderer.render(scene, camera);
-	for (var i = 0; i <  monkeyModels.length ; i ++)
+	/*for (var i = 0; i <  monkeyModels.length ; i ++)
 	 {
 		monkeyModels[i].rotation.x += randomSign(Math.random() / 10);
 		monkeyModels[i].rotation.y += randomSign(Math.random() / 10);
@@ -225,7 +225,7 @@ function renderScene() {
 		console.log(monkeyModels[i].position.y);
 
 
-	}
+	}*/
 
 	}
 	
