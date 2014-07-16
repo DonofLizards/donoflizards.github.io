@@ -134,7 +134,15 @@ function init () {
 	// Set up the initial scene
 	scene = new THREE.Scene();
 
-	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000);
+	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 20000);
+
+	var ambiColor = "#0c0c0c";
+   	var ambientLight = new THREE.AmbientLight(ambiColor);
+   	scene.add(ambientLight);
+
+   	var hemiLight = new THREE.HemisphereLight(0x0000ff, 0x00ff00, 0.6);
+  	 hemiLight.position.set(0, 500, 0);
+   	scene.add(hemiLight);
 
 	renderer = new THREE.WebGLRenderer();
 	renderer.setClearColor(0xEEEEEE);
