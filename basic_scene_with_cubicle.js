@@ -245,13 +245,13 @@ function init () {
 function renderScene() {
 	stats.update();
 	requestAnimationFrame(renderScene);
+	controls.update();
 	controls.isOnObject(false);
 	ray.ray.origin.copy( controls.getObject().position );
 	ray.ray.origin.y -= 10;
 	cube.rotation.x += 0.01;
 	cube.rotation.y += 0.01;
 	//getPointerLock();
-	controls.update();
 	renderer.render(scene, camera);
 	/*for (var i = 0; i <  monkeyModels.length ; i ++)
 	 {
