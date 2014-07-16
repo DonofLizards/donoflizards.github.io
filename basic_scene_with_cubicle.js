@@ -108,9 +108,9 @@ function addModelToScene( geometry, materials )
 		var cubicleGeometry = new THREE.Geometry();
 		var texture = new THREE.Mesh(geometry);
 
-		cubicleMesh.position.x = randomSign(Math.random() * 1000);
+		cubicleMesh.position.x = randomSign(Math.random() * 5000);
 		//cubicleMesh.position.y = cube.position.y + Math.floor(Math.random() * 100);
-		cubicleMesh.position.z = randomSign(Math.random() * 1000);
+		cubicleMesh.position.z = randomSign(Math.random() * 5000);
 
 		scene.add(cubicleMesh);
  		cubicleMeshes.push(cubicleMesh);
