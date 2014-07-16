@@ -1,6 +1,8 @@
 // Script is run only when document is loaded.
 $(document).ready(function() {
 
+var stats = initStats();
+
 var controls;
 cubicleMeshes = [];
 var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
@@ -92,7 +94,7 @@ if (havePointerLock)
 
 */
 var loader = new THREE.JSONLoader();
-loader.load("cubicle_generic.js", addModelToScene);
+loader.load("cubicle_generic_GIANT.js", addModelToScene);
 
 function addModelToScene( geometry, materials ) 
 {
@@ -129,6 +131,16 @@ function randomSign(int) {
 
 init();
 renderScene();
+
+function initStats() {
+               var stats = new Stats();
+               stats.setMode(0);
+               stats.domElement.style.position = 'absolute';
+               stats.domElement.style.left = '0px';
+               stats.domElement.style.top = '0px';
+               $("#statsOutput").append( stats.domElement );
+               return stats;
+}
 	
 function init () {	
 	// Set up the initial scene
@@ -141,8 +153,37 @@ function init () {
    	scene.add(ambientLight);
 
    	var hemiLight = new THREE.HemisphereLight(0x0000ff, 0x00ff00, 0.6);
-  	 hemiLight.position.set(0, 500, 0);
+  	hemiLight.position.set(0, 500, 0);
    	scene.add(hemiLight);
+
+   	    var lightControls = new function () {
+            	this.rotationSpeed = 0.03;
+            	this.bouncingSpeed = 0.03;
+
+            	this.hemisphere = false;
+            	this.groundColor = 0x00ff00;
+            	this.skyColor = 0x0000ff;
+            	this.intensity = 0.6;
+
+        		}
+
+	var gui = new dat.GUI();
+
+        	gui.add(lightControls, 'hemisphere').onChange(function (e) {
+            	hemiLight.visible = e;
+        });
+        	gui.addColor(lightControls, 'groundColor').onChange(function (e) {
+            	hemiLight.groundColor = new THREE.Color(e);
+        });
+       	 gui.addColor(lightControls, 'skyColor').onChange(function (e) {
+            	hemiLight.color = new THREE.Color(e);
+        });
+        	gui.add(lightControls, 'intensity', 0, 5).onChange(function (e) {
+           	 hemiLight.intensity = e;
+        });
+
+
+   	
 
 	renderer = new THREE.WebGLRenderer();
 	renderer.setClearColor(0xEEEEEE);
@@ -202,6 +243,7 @@ function init () {
 */
 	
 function renderScene() {
+	stats.update();
 	requestAnimationFrame(renderScene);
 	controls.isOnObject(false);
 	ray.ray.origin.copy( controls.getObject().position );
