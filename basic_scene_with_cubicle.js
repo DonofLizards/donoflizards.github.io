@@ -108,9 +108,9 @@ function addModelToScene( geometry, materials )
 		var cubicleGeometry = new THREE.Geometry();
 		var texture = new THREE.Mesh(geometry);
 
-		cubicleMesh.position.x = randomSign(Math.random() * 1000);
+		cubicleMesh.position.x = randomSign(Math.random() * 10000);
 		//cubicleMesh.position.y = cube.position.y + Math.floor(Math.random() * 100);
-		cubicleMesh.position.z = randomSign(Math.random() * 1000);
+		cubicleMesh.position.z = randomSign(Math.random() * 10000);
 
 		scene.add(cubicleMesh);
  		cubicleMeshes.push(cubicleMesh);
@@ -189,7 +189,7 @@ function init () {
 	renderer.setClearColor(0xEEEEEE);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
-	planeGeometry = new THREE.PlaneGeometry(2000,2000);
+	planeGeometry = new THREE.PlaneGeometry(20000,20000);
 	planeGeometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
 	planeMaterial = new THREE.MeshBasicMaterial({color:0xcccccc});
 	plane = new THREE.Mesh(planeGeometry,planeMaterial);
