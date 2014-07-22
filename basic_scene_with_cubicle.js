@@ -1,10 +1,15 @@
 // Script is run only when document is loaded.
 $(document).ready(function() {
 
+// Initial variables 
 var stats = initStats();
+
 var controls;
+
 cubicleMeshes = [];
+
 var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
+
 var instructions = document.getElementById('instructions');
 
 if (havePointerLock) {
@@ -13,6 +18,7 @@ if (havePointerLock) {
 	var pointerLockChange = function(evt) {
 	
 		if (document.pointerLockElement === element || document.mozPointerLockElement === element || document.webkitPointerLockElement === element) {
+				// Enables pointer lock controls and hides the instructions overlay when pointer lock element exists
 				controls.enabled = true;
 				container.style.display = 'none';
 			}
@@ -22,6 +28,7 @@ if (havePointerLock) {
 
 	};
 };
+
 	
 document.addEventListener( 'pointerlockchange', pointerLockChange, false );
 document.addEventListener( 'mozpointerlockchange', pointerLockChange, false );
@@ -119,6 +126,8 @@ function init () {
 
 	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 20000);
 
+
+	// Add ambient and hemisphere lighting
 	var ambiColor = "#0c0c0c";
    	var ambientLight = new THREE.AmbientLight(ambiColor);
    	scene.add(ambientLight);
@@ -139,6 +148,7 @@ function init () {
 
         		}
 
+        	// Adds a GUI which enables easy manipulation of the colour of light sources
 	var gui = new dat.GUI();
 
         	gui.add(lightControls, 'hemisphere').onChange(function (e) {
@@ -187,7 +197,7 @@ function init () {
 }
 
 
-
+// This code enables simple WASD movement. Made obsolete by pointer lock controls. 
 /*function moveCamera(evt) {
 
 	var keyCode = parseInt(evt.which);
@@ -229,13 +239,8 @@ function renderScene() {
 
 	renderer.render(scene, camera);
 
-	var intersections = raycaster.intersectObjects( objects );
 
-	if ( intersections.length > 0 ) {
-		//controls.isOnObject( true );
-		alert("true");
-	}
-
+	// Leftover code from monkey models scene - ignore 
 	/*for (var i = 0; i <  monkeyModels.length ; i ++)
 	 {
 		monkeyModels[i].rotation.x += randomSign(Math.random() / 10);
