@@ -6,7 +6,8 @@ import tweepy, time, sys
  # The first argument passed to the Python script should be the text file containing what we want our bot to say.
 argfile = str(sys.argv[1]) 
  
- # Authentication keys are stored in a separate text file for security reasons. Here we're just opening that file, getting a list of the keys and chopping off newlines. 
+ # Authentication keys are stored in a separate text file for security reasons. This isn't the best method, but it'll do for now. 
+# Here we're just opening that file, getting a list of the keys and chopping off newlines. 
 textFile = open("secret.txt", "r") 
 apiKeys = textFile.readlines()
 textFile.close()
