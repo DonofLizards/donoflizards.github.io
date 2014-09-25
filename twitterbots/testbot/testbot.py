@@ -19,7 +19,7 @@ while index < len(apiKeys):
 		apiKeys[index] = strippedItem
 		index += 1
 
-# Now we can get the various authentication keys required and authenticate! 
+# Now we can get the various authentication keys required and authenticate! Should maybe put this in a function for future use.
 consumerKey = apiKeys[0]
 consumerSecret = apiKeys[1]
 accessKey = apiKeys[2]
