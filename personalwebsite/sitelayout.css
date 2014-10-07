@@ -28,7 +28,7 @@ nav a:visited {
 
 
 
-/* Navigation */
+/* Heading and Navigation */
 
 ul {
 	list-style-type: none;
@@ -55,7 +55,7 @@ header {
 	display:inline-block;
 	height:10px;
 	width: 10px;
-	background-color: orange;
+	background-color: #EB7F00;
 	margin-left: -5px;
 }
 
@@ -112,12 +112,17 @@ p {
 	/*border: 1px solid blue; Testin' */
 	margin: auto;
 	margin-bottom: 50px;
-	width: 70%;
+	width: 50%;
 	text-align: center;
 	font-weight: 400;
 }
 
-/*Project page stuff - new and improved */
+article {
+	padding: 40px 15px 20px;
+	width: 80%;
+}
+
+/* Project page stuff - new and improved */
 
 .image-container {
 	width:200px;
@@ -148,6 +153,84 @@ p {
 .overlay:hover {
 	z-index: 2;
 	opacity: 0.8;
+}
+
+/* CV Layout */
+
+h2 {
+	display: block;
+	background-color: #1695A3;
+	padding: 10px;
+	/*transition: width 0.5s ease-out;*/
+	margin-bottom: 20px;
+	color: white;
+	letter-spacing: 0.5em;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+h2:hover {
+	/*width: 60%;*/
+}
+
+/*aside {
+	float: right;
+	width: 20%;
+	height: 300px;
+	/*background-color: #1695A3;
+}*/
+
+.cv-heading {
+	display: inline;
+	width: 100%;
+}
+
+.date {
+	float: right;
+	margin-right: 20px;
+	background-color: #d3d3d3;
+	padding: 5px;
+	display: inline-block;
+	color: white;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.icon-wrapper {
+	display: inline-block;
+	/*padding-bottom: 20px;
+	padding-right: 40px;
+	padding-top: 20px;*/
+	padding: 20px 20px 20px 20px;
+	color: white;
+	width: 20%;
+}
+
+.round-icon {
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	background-color: #1695A3;
+	border: 6px solid #1695A3;
+	text-align: center;
+	display:table-cell;
+	vertical-align:middle;
+/*	-webkit-animation: border-anim 5s;
+	animation: border-anim 5s;*/
+}
+
+/*@-webkit-keyframes border-anim {
+	from {border: 5px solid #000000;}
+	to {border: 5px solid #1695A3;}
+}
+
+@keyframes border-anim {
+	from {border: 0px solid #000000;}
+	to {border: 5px solid #1695A3;}
+}*/
+
+.round-icon > i {
+	text-align: center;
+	margin: auto;
+	color: white;
 }
 
 /* Footer */
